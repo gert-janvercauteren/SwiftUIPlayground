@@ -1,10 +1,3 @@
-//
-//  searchApp.swift
-//  search
-//
-//  Created by Gert-Jan Vercauteren on 23/10/2021.
-//
-
 import SwiftUI
 
 @main

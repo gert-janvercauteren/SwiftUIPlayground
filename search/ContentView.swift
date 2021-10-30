@@ -1,14 +1,11 @@
-//
-//  ContentView.swift
-//  search
-//
-//  Created by Gert-Jan Vercauteren on 23/10/2021.
-//
-
 import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    enum Tab {
+      case search, favorites
+    }
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -16,21 +13,37 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
 
-    var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
+    @State private var currentTab: Tab = .search
 
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+    var body: some View {
+        NavigationView {
+            TabView(selection: $currentTab) {
+                // Search tab
+                SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass.circle.fill")
+                    Text("Search")
+                }
+                .tag(Tab.search)
+                
+                // Favorites tab
+                Text("Hello")
+                .tabItem {
+                    Image(systemName: "heart.circle.fill")
+                    Text("Favorites")
+                }
+                .tag(Tab.favorites)
             }
+            .navigationTitle(tabTitle(currentTab))
+        }
+    }
+    
+    private func tabTitle(_ tab: Tab) -> String {
+        switch tab {
+        case .search:
+            return "Search"
+        case .favorites:
+            return "Favorites"
         }
     }
 
