@@ -11,10 +11,10 @@ struct MovieModel: Codable, Identifiable {
     let description: String?
     
     var price: String {
-        if let trackPrice = trackPrice {
+        if let trackPrice = trackPrice, trackPrice > 0 {
             return "\(String(format: "%.2f", trackPrice)) \(currency)"
         }
-        
+                
         return "FREE"
     }
     
