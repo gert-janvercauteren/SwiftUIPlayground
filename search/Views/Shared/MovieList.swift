@@ -16,7 +16,7 @@ struct MovieList: View {
 struct MovieList_Previews: PreviewProvider {
     static var previews: some View {
         MovieList(movies: [
-            MovieModel(title: "Test movie", price: 3.99, genre: "Drama")
+            MovieModel.preview
         ])
     }
 }

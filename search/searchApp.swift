@@ -1,9 +1,10 @@
 import SwiftUI
+import CoreData
 
 @main
 struct searchApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

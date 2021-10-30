@@ -18,6 +18,10 @@ struct MovieModel: Codable, Identifiable {
         return "FREE"
     }
     
+    static var preview: MovieModel {
+        return MovieModel(title: "Preview moview", price: 3.99, genre: "Drama")
+    }
+    
     private let trackPrice: Double?
     private let currency: String
 
@@ -50,7 +54,9 @@ struct MovieModel: Codable, Identifiable {
         self.trackPrice = model.price
         self.currency = "AUD"
     }
-    
+}
+
+extension MovieModel {
     func convertToDBModel(withViewContext viewContext: NSManagedObjectContext) -> Movie {
         let newMovieDBModel =  Movie(context: viewContext)
         newMovieDBModel.itunes_id = Int64(self.id)
