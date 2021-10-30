@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 class SearchViewModel: ObservableObject {
-    @Published var movies: [Movie] = []
+    @Published var movies: [MovieModel] = []
     var searchText = "" {
         didSet {
             getMovies(searchTerm: searchText)

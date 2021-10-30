@@ -1,8 +1,9 @@
 import Foundation
+import CoreData
 
-struct Movie: Codable, Identifiable {
+struct MovieModel: Codable, Identifiable {
     let id: Int
-    let name: String
+    let title: String
     
     let genre: String
     
@@ -22,7 +23,7 @@ struct Movie: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case id = "trackId"
-        case name = "trackName"
+        case title = "trackName"
         case trackPrice
         case currency
         case genre = "primaryGenreName"
@@ -30,13 +31,41 @@ struct Movie: Codable, Identifiable {
         case description = "longDescription"
     }
     
-    init(name: String, price: Double, genre: String) {
+    init(title: String, price: Double, genre: String) {
         self.id = 1
         self.currency = "AUD"
-        self.name = name
+        self.title = title
         self.trackPrice = price
         self.genre = genre
         self.imageUrl = "https://example.com"
         self.description = ""
+    }
+    
+    init(withDbModel model: Movie) {
+        self.id = Int(model.itunes_id)
+        self.title = model.title ?? ""
+        self.genre = model.genre ?? ""
+        self.imageUrl = model.image_url ?? "https://example.com"
+        self.description = model.long_description
+        self.trackPrice = model.price
+        self.currency = "AUD"
+    }
+    
+    func convertToDBModel(withViewContext viewContext: NSManagedObjectContext) -> Movie {
+        let newMovieDBModel =  Movie(context: viewContext)
+        newMovieDBModel.itunes_id = Int64(self.id)
+        newMovieDBModel.title = self.title
+        newMovieDBModel.genre = self.genre
+        newMovieDBModel.image_url = self.imageUrl
+        
+        if let description = description {
+            newMovieDBModel.long_description = description
+        }
+        
+        if let trackPrice = trackPrice {
+            newMovieDBModel.price = trackPrice
+        }
+        
+        return newMovieDBModel
     }
 }

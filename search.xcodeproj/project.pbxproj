@@ -82,6 +82,13 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		796D5F1F272D7CD500C4F3B0 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 		798ED2C42723F61700882563 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +132,7 @@
 		798ED2E42723F97600882563 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				796D5F1F272D7CD500C4F3B0 /* Favorites */,
 				795CB196272505CB00BD9925 /* Shared */,
 				795CB1932725023200BD9925 /* MovieDetail */,
 				798ED2E52723F97B00882563 /* Search */,

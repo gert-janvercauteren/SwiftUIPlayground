@@ -1,7 +1,10 @@
 import SwiftUI
+import CoreData
 
 struct MovieDetailView: View {
-    var movie: Movie
+    var movie: MovieModel
+    
+    @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
         VStack {
@@ -14,7 +17,7 @@ struct MovieDetailView: View {
         .navigationTitle("Details")
         .toolbar {
             Button {
-                print("Edit button was tapped")
+                addToFavorites()
             } label: {
                 Image(systemName: "heart")
                     .accessibilityLabel("Add to favorites ")
@@ -22,10 +25,23 @@ struct MovieDetailView: View {
             }
         }
     }
+    
+    private func addToFavorites() {
+        _ = movie.convertToDBModel(withViewContext: viewContext)
+
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
 }
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: Movie(name: "Test", price: 3.00, genre: "Test"))
+        MovieDetailView(movie: MovieModel(title: "Test", price: 3.00, genre: "Test"))
     }
 }

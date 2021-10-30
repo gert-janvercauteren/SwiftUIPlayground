@@ -1,22 +1,23 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var searchText = ""
-    @ObservedObject var viewModel = SearchViewModel()
+    
+    var movies: [MovieModel]
+    @Binding var searchText: String
     
     var body: some View {
         VStack {
             SearchBar(text: $searchText)
-            MovieList(movies: viewModel.movies)
-        }
-        .onChange(of: searchText) { value in
-            viewModel.getMovies(searchTerm: value)
+            MovieList(movies: movies)
         }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
+    
+    @State static var searchText = "Test"
+    
     static var previews: some View {
-        SearchView()
+        SearchView(movies: [], searchText: $searchText)
     }
 }

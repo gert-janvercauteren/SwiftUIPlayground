@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MovieRow: View {
     
-    let movie: Movie
+    let movie: MovieModel
     
     var body: some View {
         HStack {
@@ -13,7 +13,7 @@ struct MovieRow: View {
             }
                 .frame(width: 40, height: 60)
             VStack(alignment: .leading) {
-                Text(movie.name)
+                Text(movie.title)
                     .font(.headline)
                 HStack {
                     Text(movie.genre)
@@ -31,6 +31,6 @@ struct MovieRow: View {
 
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
-        MovieRow(movie: Movie(name: "TestMoview", price: 3.99, genre: "Drama"))
+        MovieRow(movie: MovieModel(title: "TestMoview", price: 3.99, genre: "Drama"))
     }
 }

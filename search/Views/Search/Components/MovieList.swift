@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MovieList: View {
     
-    var movies: [Movie] = []
+    var movies: [MovieModel] = []
     
     var body: some View {
         List(movies) { movie in
@@ -16,7 +16,7 @@ struct MovieList: View {
 struct MovieList_Previews: PreviewProvider {
     static var previews: some View {
         MovieList(movies: [
-            Movie(name: "Test movie", price: 3.99, genre: "Drama")
+            MovieModel(title: "Test movie", price: 3.99, genre: "Drama")
         ])
     }
 }

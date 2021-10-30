@@ -1,7 +1,7 @@
 import Foundation
 
 struct ItunesMovieResponse: Codable {
-    let movies: [Movie]
+    let movies: [MovieModel]
     
     enum CodingKeys: String, CodingKey {
         case movies = "results"

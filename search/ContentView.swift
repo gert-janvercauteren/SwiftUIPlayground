@@ -6,20 +6,21 @@ struct ContentView: View {
       case search, favorites
     }
     
-    @Environment(\.managedObjectContext) private var viewContext
-
+    @State var searchText = ""
+    @ObservedObject var viewModel = SearchViewModel()
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [],
         animation: .default)
-    private var items: FetchedResults<Item>
-
+    private var favorites: FetchedResults<Movie>
+    
     @State private var currentTab: Tab = .search
 
     var body: some View {
         NavigationView {
             TabView(selection: $currentTab) {
                 // Search tab
-                SearchView()
+                SearchView(movies: viewModel.movies, searchText: $searchText)
                 .tabItem {
                     Image(systemName: "magnifyingglass.circle.fill")
                     Text("Search")
@@ -27,12 +28,15 @@ struct ContentView: View {
                 .tag(Tab.search)
                 
                 // Favorites tab
-                Text("Hello")
+                MovieList(movies: favorites.map { MovieModel(withDbModel: $0) })
                 .tabItem {
                     Image(systemName: "heart.circle.fill")
                     Text("Favorites")
                 }
                 .tag(Tab.favorites)
+            }
+            .onChange(of: searchText) { value in
+                viewModel.getMovies(searchTerm: value)
             }
             .navigationTitle(tabTitle(currentTab))
         }
@@ -47,44 +51,21 @@ struct ContentView: View {
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            offsets.map { items[$0] }.forEach(viewContext.delete)
+//
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//    }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
