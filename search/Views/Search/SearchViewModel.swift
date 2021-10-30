@@ -21,7 +21,6 @@ extension SearchViewModel {
         self.isLoading = true
         cancellationToken = ItunesAPI.request(.getMovies(query: searchTerm))
             .mapError({ (error) -> Error in
-                print(error)
                 self.isLoading = false
                 return error
             })

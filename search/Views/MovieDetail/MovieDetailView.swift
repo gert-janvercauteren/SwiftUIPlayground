@@ -4,10 +4,10 @@ import CoreData
 struct MovieDetailView: View {
     var movie: MovieModel
     var isFavorite: Bool = true
-        
-    @Environment(\.managedObjectContext) private var viewContext
-    
     var favoriteRequest: FetchRequest<Movie>
+    
+    @State private var showingAlert = false
+    @Environment(\.managedObjectContext) private var viewContext
     
     init(movie: MovieModel) {
         self.movie = movie
@@ -34,6 +34,9 @@ struct MovieDetailView: View {
                     .tint(.red)
             }
         }
+        .alert("Could not add/remove as favorite", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) { }
+        }
     }
     
     private func addToFavorites() {
@@ -42,10 +45,8 @@ struct MovieDetailView: View {
         do {
             try viewContext.save()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            // Should handle error. Not interested for demo
+            showingAlert = true
         }
     }
     
@@ -56,10 +57,8 @@ struct MovieDetailView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                // Should handle error. Not interested for demo
+                showingAlert = true
             }
         }
     }
