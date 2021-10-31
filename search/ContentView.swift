@@ -50,20 +50,11 @@ struct ContentView: View {
     private func searchView() -> some View {
         Group {
             if viewModel.isLoading {
-                EmptyView(iconName: "bolt.square.fill",
-                          title: "Loading",
-                          subtitle: "Hold on tight!",
-                          color: .green)
+                EmptyView.loadingMovies
             } else if searchBarObserver.debouncedText.isEmpty {
-                EmptyView(iconName: "magnifyingglass.circle.fill",
-                          title: "Search movies",
-                          subtitle: "Try: Star wars",
-                          color: .blue)
+                EmptyView.emptyMovies
             } else if viewModel.movies.isEmpty {
-                EmptyView(iconName: "cloud.rain.fill",
-                          title: "No results :(",
-                          subtitle: "Try: Star wars",
-                          color: .orange)
+                EmptyView.noResultsMovies
             } else {
                 MovieList(movies: viewModel.movies)
             }
@@ -77,20 +68,17 @@ struct ContentView: View {
                     MovieModel(withDbModel: $0)
                 })
             } else {
-                EmptyView(iconName: "heart.circle.fill",
-                          title: "No favorites yet",
-                          subtitle: "Search your favorite movies and add them to your list",
-                          color: .red)
+                EmptyView.emptyFavorites
             }
         }
     }
     
-    private func tabTitle(_ tab: Tab) -> String {
+    private func tabTitle(_ tab: Tab) -> LocalizedStringKey {
         switch tab {
         case .search:
-            return "Search"
+            return "search.title"
         case .favorites:
-            return "Favorites"
+            return "favorites.title"
         }
     }
 }

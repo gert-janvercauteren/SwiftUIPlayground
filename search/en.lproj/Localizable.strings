@@ -1,0 +1,12 @@
+// Search
+"search.title" = "Search";
+"search.title.empty" = "Search movies";
+"search.subtitle.empty" = "Try: Star wars";
+
+"search.title.loading" = "Loading";
+"search.subtitle.loading" = "Hold on tight";
+
+// Favorites
+"favorites.title" = "Favorites";
+"favorites.title.empty" = "No favorites yet";
+"favorites.subtitle.empty" = "Search your favorite movies and add them to your list";
