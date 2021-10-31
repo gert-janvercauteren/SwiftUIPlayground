@@ -19,8 +19,11 @@ struct MovieDetailView: View {
     var body: some View {
         VStack {
             MovieRow(movie: movie)
-            Text(movie.description ?? "No description available")
-                .font(.body)
+            ScrollView {
+                Text(movie.description ?? "No description available")
+            }
+            .font(.body)
+            
             Spacer()
         }
         .padding()
@@ -30,7 +33,7 @@ struct MovieDetailView: View {
                 favoriteRequest.wrappedValue.isEmpty ? addToFavorites() : removeFromFavorites()
             } label: {
                 Image(systemName: favoriteRequest.wrappedValue.isEmpty ? "heart" : "heart.fill")
-                    .accessibilityLabel("Add to favorites ")
+                    .accessibilityLabel(favoriteRequest.wrappedValue.isEmpty ? "Add to favorites " : "Remove from favorites")
                     .tint(.red)
             }
         }
