@@ -38,8 +38,8 @@ extension EmptyView {
                                        color: .blue)
     
     static var noResultsMovies = EmptyView(iconName: "cloud.rain.fill",
-                                           title: "No results :(",
-                                           subtitle: "Try: Star wars",
+                                           title: "search.title.no_results",
+                                           subtitle: "search.sutitle.no_results",
                                            color: .orange)
     
     static var emptyFavorites = EmptyView(iconName: "heart.circle.fill",
@@ -50,9 +50,6 @@ extension EmptyView {
 
 struct EmptyFavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(iconName: "heart.square.fill",
-                  title: "No favorites yet",
-                  subtitle: "Search your favorite movies and add them to your list",
-                  color: .red)
+        EmptyView.loadingMovies
     }
 }

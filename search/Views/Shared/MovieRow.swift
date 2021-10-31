@@ -11,7 +11,7 @@ struct MovieRow: View {
             } placeholder: {
                 ProgressView()
             }
-                .frame(width: 40, height: 60)
+            .frame(width: 40, height: 60)
             VStack(alignment: .leading) {
                 Text(movie.title)
                     .font(.headline)
@@ -31,6 +31,6 @@ struct MovieRow: View {
 
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
-        MovieRow(movie: MovieModel(title: "TestMoview", price: 3.99, genre: "Drama"))
+        MovieRow(movie: MovieModel.preview)
     }
 }

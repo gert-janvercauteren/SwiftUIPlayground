@@ -10,6 +10,9 @@
 "search.title.loading" = "Loading";
 "search.subtitle.loading" = "Hold on tight";
 
+"search.title.no_results" = "No results :(";
+"search.subtitle.no_results" = "Try: Hunger games";
+
 // Favorites
 "favorites.title" = "Favorites";
 "favorites.title.empty" = "No favorites yet";

@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import Fakery
 
 struct MovieModel: Codable, Identifiable {
     let id: Int
@@ -20,7 +21,8 @@ struct MovieModel: Codable, Identifiable {
     }
     
     static var preview: MovieModel {
-        return MovieModel(title: "Preview moview", price: 3.99, genre: "Drama")
+        let faker = Faker()
+        return MovieModel(title: faker.app.name(), price: faker.number.randomDouble(), genre: faker.app.author())
     }
     
     private let trackPrice: Double?

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		796D5F25272D95B100C4F3B0 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796D5F24272D95B100C4F3B0 /* EmptyView.swift */; };
 		796D5F27272D9BAC00C4F3B0 /* SearchBarObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796D5F26272D9BAC00C4F3B0 /* SearchBarObserver.swift */; };
 		796D5F2B272E3FE000C4F3B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 796D5F2D272E3FE000C4F3B0 /* Localizable.strings */; };
+		796D5F30272E456C00C4F3B0 /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 796D5F2F272E456C00C4F3B0 /* Fakery */; };
 		798ED2D12723F61700882563 /* searchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798ED2D02723F61700882563 /* searchApp.swift */; };
 		798ED2D32723F61700882563 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798ED2D22723F61700882563 /* ContentView.swift */; };
 		798ED2D52723F61800882563 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798ED2D42723F61800882563 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796D5F30272E456C00C4F3B0 /* Fakery in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +195,9 @@
 			dependencies = (
 			);
 			name = search;
+			packageProductDependencies = (
+				796D5F2F272E456C00C4F3B0 /* Fakery */,
+			);
 			productName = search;
 			productReference = 798ED2CD2723F61700882563 /* search.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 798ED2C42723F61700882563;
+			packageReferences = (
+				796D5F2E272E456C00C4F3B0 /* XCRemoteSwiftPackageReference "Fakery" */,
+			);
 			productRefGroup = 798ED2CE2723F61700882563 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -461,6 +469,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		796D5F2E272E456C00C4F3B0 /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		796D5F2F272E456C00C4F3B0 /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 796D5F2E272E456C00C4F3B0 /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		798ED2DB2723F61800882563 /* search.xcdatamodeld */ = {
