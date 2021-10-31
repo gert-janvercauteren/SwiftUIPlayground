@@ -14,3 +14,6 @@
 "favorites.title" = "Favorites";
 "favorites.title.empty" = "No favorites yet";
 "favorites.subtitle.empty" = "Search your favorite movies and add them to your list";
+
+// Movies
+"item.free" = "FREE";

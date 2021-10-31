@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="currency_label" optional="YES" attributeType="String"/>
         <attribute name="genre" attributeType="String"/>
         <attribute name="image_url" optional="YES" attributeType="String"/>
         <attribute name="itunes_id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -14,6 +15,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-9" width="128" height="133"/>
+        <element name="Movie" positionX="-63" positionY="-9" width="128" height="148"/>
     </elements>
 </model>

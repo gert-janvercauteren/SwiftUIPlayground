@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import CoreData
 
 struct MovieModel: Codable, Identifiable {
@@ -10,12 +11,12 @@ struct MovieModel: Codable, Identifiable {
     let imageUrl: String
     let description: String?
     
-    var price: String {
+    var price: LocalizedStringKey {
         if let trackPrice = trackPrice, trackPrice > 0 {
             return "\(String(format: "%.2f", trackPrice)) \(currency)"
         }
                 
-        return "FREE"
+        return LocalizedStringKey("item.free")
     }
     
     static var preview: MovieModel {
@@ -52,7 +53,7 @@ struct MovieModel: Codable, Identifiable {
         self.imageUrl = model.image_url ?? "https://example.com"
         self.description = model.long_description
         self.trackPrice = model.price
-        self.currency = "AUD"
+        self.currency = model.currency_label ?? "AUD"
     }
 }
 
@@ -63,6 +64,7 @@ extension MovieModel {
         newMovieDBModel.title = self.title
         newMovieDBModel.genre = self.genre
         newMovieDBModel.image_url = self.imageUrl
+        newMovieDBModel.currency_label = self.currency
         
         if let description = description {
             newMovieDBModel.long_description = description
