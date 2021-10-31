@@ -1,3 +1,7 @@
+// Tabs
+"tab.search" = "Search";
+"tab.favorites" = "Favorites";
+
 // Search
 "search.title" = "Search";
 "search.title.empty" = "Search movies";

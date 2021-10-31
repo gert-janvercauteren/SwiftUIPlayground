@@ -1,9 +1,15 @@
 import Foundation
 import Combine
 
+enum Tab {
+  case search, favorites
+}
+
 class SearchViewModel: ObservableObject {
+    @Published var currentTab: Tab = .search
     @Published var movies: [MovieModel] = []
     @Published var isLoading: Bool = false
+    
     var searchText = "" {
         didSet {
             getMovies(searchTerm: searchText)

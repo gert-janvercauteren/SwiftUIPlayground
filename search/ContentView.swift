@@ -2,10 +2,6 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    enum Tab {
-      case search, favorites
-    }
-    
     @StateObject var searchBarObserver = SearchBarObserver()
     @ObservedObject var viewModel = SearchViewModel()
     
@@ -14,11 +10,9 @@ struct ContentView: View {
         animation: .default)
     private var favorites: FetchedResults<Movie>
     
-    @State private var currentTab: Tab = .search
-    
     var body: some View {
         NavigationView {
-            TabView(selection: $currentTab) {
+            TabView(selection: $viewModel.currentTab) {
                 // Search tab
                 VStack {
                     SearchBar(text: $searchBarObserver.searchText)
@@ -28,7 +22,7 @@ struct ContentView: View {
                 }
                 .tabItem {
                     Image(systemName: "magnifyingglass.circle.fill")
-                    Text("Search")
+                    Text("tab.search")
                 }
                 .tag(Tab.search)
                 
@@ -36,14 +30,14 @@ struct ContentView: View {
                favoritesView()
                 .tabItem {
                     Image(systemName: "heart.circle.fill")
-                    Text("Favorites")
+                    Text("tab.favorites")
                 }
                 .tag(Tab.favorites)
             }
             .onChange(of: searchBarObserver.debouncedText) { value in
                 viewModel.getMovies(searchTerm: value)
             }
-            .navigationTitle(tabTitle(currentTab))
+            .navigationTitle(tabTitle(viewModel.currentTab))
         }
     }
     
