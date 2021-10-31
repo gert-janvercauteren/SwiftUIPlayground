@@ -18,8 +18,8 @@ struct MovieDetailView: View {
     
     var body: some View {
         VStack {
-            MovieRow(movie: movie)
             ScrollView {
+                MovieRow(movie: movie)
                 Text(movie.description ?? "No description available")
             }
             .font(.body)
